@@ -1,0 +1,43 @@
+﻿.content-container {
+    width: 90%;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.table-container {
+    margin-top: 20px;
+    box-sizing: border-box;
+    width:100%;
+    background: #FFFFFF;
+    border: 2px solid #DADADA;
+    box-shadow: 4px 5px 10px rgba(0, 0, 0, 0.25);
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    margin-bottom:0px;
+}
+
+.headline-container {
+    height: 5.1vh; /*height: 40px*/
+    background: rgba(165, 167, 168, 0.2);
+    font-family: 'Inter';
+    font-weight: 700;
+    font-size: 14px;
+    color: #3D638C;
+    display:flex;
+    align-items:center;
+}
+
+.item-text {
+    text-align:center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

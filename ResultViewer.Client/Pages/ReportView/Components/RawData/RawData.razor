@@ -1,0 +1,25 @@
+﻿@using ResultViewer.Client.Core.Components.Loading
+
+<div class="RawDataTable">
+    @if(Items.Count() == 0)
+    {
+        <div class="rv-flex-v-stack rv-flex-center">
+            <Loading />
+        </div>
+    }
+    else
+    {
+        <QuickGrid Items="Items.AsQueryable()" ResizableColumns="true" Class="table" Theme="a">
+            <TemplateColumn Align="Align.Center" Title="Test Num" Sortable="true" SortBy="@SortByTestNun">
+                @context.TestNum
+            </TemplateColumn>
+            <PropertyColumn Property="@(row => row.TestType)" Sortable="true" Align="Align.Center" Title="Test Type" />
+            <PropertyColumn Property="@(row => row.MisregX)" Sortable="true" Align="Align.Center"  Title="Misreg X (nm)" />
+            <PropertyColumn Property="@(row => row.MisregY)" Sortable="true" Align="Align.Center" Title="Misreg Y (nm)" />
+            <PropertyColumn Property="@(row => row.TISXCorrection)" Sortable="true" Align="Align.Center"  Title="TIS X (nm)" />
+            <PropertyColumn Property="@(row => row.TISYCorrection)" Sortable="true" Align="Align.Center"  Title="TIS Y (nm)" />
+            <PropertyColumn Property="@(row => row.PassOrFail)" Sortable="true" Align="Align.Center" Title="Pass/Fail" />
+            <PropertyColumn Property="@(row => row.FailReason)" Sortable="true" Align="Align.Center"  Title="Fail Reason" />
+        </QuickGrid>
+    }
+</div>

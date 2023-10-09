@@ -1,0 +1,14 @@
+﻿@using ResultViewer.Client.Core.Components.NavMenu
+@inherits LayoutComponentBase
+
+<div class="page">
+    <div class="sidebar" style="@IconMenuCssClass">
+        <NavMenu ShowIconMenu="ToggleIconMenu" />
+    </div>
+
+    <main>
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+</div>

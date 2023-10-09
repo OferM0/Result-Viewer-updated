@@ -1,0 +1,114 @@
+﻿.current-machine {
+    background-color: #dff2ff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 30px;
+    width:70%;
+    height:150px;
+}
+
+.current-machine h2 {
+    color: #1e5ea9;
+    font-weight: bold;
+}
+
+.current-machine .status-online {
+    color: #4fa8f7;
+    font-weight: bold;
+}
+
+.offline-machines .status-offline {
+    color: #f25f5f;
+    font-weight: bold;
+}
+
+.offline-machines h3 {
+    color: #1e5ea9;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.connect-button {
+    background-color: #4fa8f7;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.connect-button:hover {
+    background-color: #3788b7;
+}
+
+
+.connect-button:active {
+    transition: transform 0.1s ease-in-out;
+    transform: scale(1.1);
+}
+
+.content-container {
+    width: 90%;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.table-container {
+    box-sizing: border-box;
+    height: 64vh;
+    width: 90%;
+    background: #FFFFFF;
+    border: 2px solid #DADADA;
+    box-shadow: 4px 5px 10px rgba(0, 0, 0, 0.25);
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-radius: 10px 10px 0px 0px;
+}
+
+::deep .table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    margin-bottom: 0px;
+}
+
+::deep thead {
+    height: 40px;
+    background: rgb(141, 187, 221, 0.7);
+    color: #6784a0;
+    font-weight: bold;
+    text-align:center;
+}
+
+::deep td {
+    font-size: 13px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+::deep tr {
+    height: 30px;
+    border-bottom: 1px solid #DADADA;
+    font-family: 'Inter';
+    color: #333333;
+}
+
+::deep .quickgrid[theme=a] {
+    font-family: 'Inter';
+}
+
+::deep .quickgrid[theme=a] .col-title {
+    font-weight: 700;
+    font-size: 14px;
+    color: #3D638C;
+}
+
+::deep .quickgrid[theme=a] th {
+    position: sticky;
+    border: none;
+    overflow-x: hidden;
+    overscroll-behavior-x: none;
+}

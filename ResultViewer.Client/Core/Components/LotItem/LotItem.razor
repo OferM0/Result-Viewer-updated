@@ -1,0 +1,40 @@
+﻿﻿@using ResultViewer.Client.Core.Constants;
+@using ResultViewer.Client.Core.Entities.Local;
+
+@if(!IsClicked)
+{
+    <div @ondblclick="OnItemDoubleClick" @onmouseleave="()=>ShowMenu(false)" class="lot-item-container">
+        <div class="rv-flex-h-stack rv-flex-justify-space-around">
+            <div class="rv-flex-equal item-text" data-hover=@item.LotName><img src="@Icons.File" class="file-icon" alt="File" /> @item.LotName</div>
+            <div class="rv-flex-equal item-text" data-hover=@item.RecipeName>@item.RecipeName</div>
+            <div class="rv-flex-equal item-text" data-hover=@item.StartRunDate.ToString(Constants.LotItemComponent.ToTimeFormat)>@item.StartRunDate.ToString(Constants.LotItemComponent.ToTimeFormat)</div>
+            <div class="rv-flex-equal item-text" data-hover=@item.EndRunDate.ToString(Constants.LotItemComponent.ToTimeFormat)>@item.EndRunDate.ToString(Constants.LotItemComponent.ToTimeFormat)</div>
+            <div class="rv-flex-equal item-text" data-hover=@item.RunTime>@Double.Parse(item.RunTime).ToString(Constants.LotItemComponent.ToAfterDotDoubleFormat)</div>
+            <div class="rv-flex-equal"><img src="@GetStatusIcon(item.LotStatus)" alt="@item.LotStatus" class="status-icon" /> @item.LotStatus</div>
+            <div class="rv-flex-equal">@item.Reason</div>
+            <div class="rv-flex-equal"><img src="@Icons.ThreeDots" class="dots-icon" @onclick="()=>ShowMenu(!showMenu)" /></div>
+        </div>
+        @if (showMenu)
+        {
+            <div class="menu">
+                <button class="export-button" @onclick="() => OnExportClick(item.Run_Id)">Export</button>
+            </div>
+        }
+    </div>
+ 
+}
+else
+{
+    <div @ondblclick="OnItemDoubleClick" @onclick="OnItemClick" class="lot-item-container-2">
+        <div class="rv-flex-v-stack">
+            <div class="rv-flex-h-stack rv-flex-justify-space-around">
+                <div class="rv-flex-equal item-text-after-expand"><img src="@Icons.File" class="file-icon" alt="File" /> @item.LotName</div>
+                <div class="rv-flex-equal">@item.StartRunDate.ToString(Constants.LotItemComponent.ToTimeFormat)</div>
+                <div class="rv-flex-equal"><img src="@GetStatusIcon(item.LotStatus)" alt="@item.LotStatus" class="status-icon" /> @item.LotStatus</div>
+            </div>
+            <div class="rv-flex-h-stack">
+                <div class="rv-flex-equal">@item.LotName</div>         
+            </div>
+        </div>
+    </div>             
+}

@@ -1,0 +1,19 @@
+﻿query GetWaferRuns {
+allWaferRuns {
+    run_Id,
+    wafer_Run_Id,
+    wafer_Ordinal_Num,
+    wafer_Start_Time,
+    wafer_End_Time,
+    conditional_Site_Mode,
+    images_Meta_Data_Path,
+    lotRun {
+      run_Id,
+      lot_Name,
+      recipe_Name,
+      lot_Status,
+      run_Start_Time,
+      run_End_Time
+    }
+  }
+}

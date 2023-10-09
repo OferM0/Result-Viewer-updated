@@ -1,0 +1,8 @@
+﻿.pieContainer {
+    width: 400px;
+    height: 400px;
+    background-color: white;
+    border-radius: 10px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}

@@ -1,0 +1,45 @@
+﻿@page "/settings"
+@using static ResultViewer.Client.Core.Enums.RangeViewEnums;
+
+<div class="rv-flex-v-stack rv-flex-center">
+    <div class="range-table rv-flex-v-stack">
+        <h3>Add Ranges</h3>
+        <div class="rv-flex-h-stack">
+            <div class="form-group">
+                <label for="fieldInput">Field:</label>
+                <select class="form-control" @bind="@selectedField" id="fieldInput">
+                    <option disabled selected value="">Select Field</option>
+                    @foreach (var field in Constants.RangeViewPage.SelectedRanges.Values)
+                    {
+                        <option value="@field.Field">@field.Field</option>
+                    }
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="minInput">Min Value:</label>
+                <input type="number" class="form-control" @bind="@minValue" @bind:event="oninput" id="minInput" />
+            </div>
+
+            <div class="form-group">
+                <label for="maxInput">Max Value:</label>
+                <input type="number" class="form-control" @bind="@maxValue" @bind:event="oninput" id="maxInput" />
+            </div>
+
+            <button class="add-button" @onclick="SaveRange" disabled="@IsSaveDisabled">Save</button>
+        </div>
+    </div>
+
+    <div class="range-table content-container rv-flex-v-stack rv-flex-center">
+        <h3>Selected Ranges</h3>
+        <div class="table-container">
+            <QuickGrid Items="selectedRanges.AsQueryable()" ResizableColumns="true" Class="table" Theme="a">
+                <PropertyColumn Property="@(i => i.Field)" Sortable="true" Align="Align.Center" Title="Field" />
+                <PropertyColumn Property="@(i => i.MinValue)" Sortable="true" Align="Align.Center" Title="Min Value" />
+                <PropertyColumn Property="@(i => i.MaxValue)" Sortable="true" Align="Align.Center" Title="Max Value" />
+                <TemplateColumn><button class="remove-button" @onclick="()=>ClearField(context)">Clear</button></TemplateColumn>
+            </QuickGrid>
+        </div>
+    </div>
+
+</div>

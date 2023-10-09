@@ -1,0 +1,97 @@
+﻿@page "/analysis"
+@using BlazorDateRangePicker
+@using ResultViewer.Client.Core.Components.Loading
+@using ResultViewer.Client.Core.Components.FloatingCloseButton
+@inject NavigationManager NavManager
+
+<Breadcrumb Breadcrumbs="Breadcrumbs"></Breadcrumb>
+
+<div class="rv-flex-h-stack rv-flex-justify-space-evenly">
+
+    @if (DataItems.Count() == 0)
+    {
+        <Loading />
+    }
+    else
+    {
+        if (!isItemSelected)
+        {
+            <div class="content-container rv-flex-v-stack rv-flex-center">
+                <div class="table-container">
+                    <QuickGrid Items="DataItems.AsQueryable()" Pagination="@Pagination" Class="table" ResizableColumns="true" Theme="a">
+                        <TemplateColumn Align="Align.Center" Title="Recipe Name" Sortable="true" SortBy="@SortByRecipeName" Class="recipename-th">
+                            <div class="item-text" data-hover=@context.RecipeName>
+                                @context.RecipeName
+                            </div>
+                        </TemplateColumn>
+                        <PropertyColumn Property="@(i => i.FirstRunDate)" Sortable="true" Align="Align.Center" Title="First Run Date" Class="meduim-th" />
+                        <PropertyColumn Property="@(i => i.LastRunDate)" Sortable="true" Align="Align.Center" Title="Last Run Date" Class="meduim-th" />
+                        <PropertyColumn Property="@(i => i.Count)" Sortable="true" Align="Align.Center" Title="Count" Class="small-th" />
+                        <TemplateColumn Class="small-th">
+                            <div class="dropdown">
+                                <i class="oi oi-ellipses buttonBar" type="button" @onclick="()=>ToggleDropdown(context.Recipe_Run_Id.ToString())"></i>
+                                @if (openRowId == context.Recipe_Run_Id.ToString())
+                                {
+                                    <div class="dropdown-menu show check" @onclick:stopPropagation @onmouseleave="CloseDropdown">
+                                        <button class="dropdown-item" @onclick="()=> OnDoubleClick(context)">TMU Analysis</button>
+                                    </div>
+                                }
+                            </div>
+                        </TemplateColumn>
+                    </QuickGrid>
+                </div>
+                <Paginator Value="@Pagination" />
+            </div>
+        }
+        else
+        {
+            <div class="content-container rv-flex-v-stack rv-flex-60">
+                <FloatingCloseButton OnCloseClick="HandleOnCloseButtonClick"></FloatingCloseButton>
+                <div class="table-container">
+                    <QuickGrid Items="DataItems.AsQueryable()" Pagination="@Pagination" Class="table" ResizableColumns="true" Theme="a">
+                        <TemplateColumn Align="Align.Center" Title="Recipe Name" Sortable="true" SortBy="@SortByRecipeName" Class="recipename-smalltable-th">
+                            <div class="item-text" data-hover=@context.RecipeName>
+                                @context.RecipeName
+                            </div>
+                        </TemplateColumn>                        
+                        <PropertyColumn Property="@(i => i.FirstRunDate)" Sortable="true" Align="Align.Center" Title="First Run Date" />
+                        <PropertyColumn Property="@(i => i.LastRunDate)" Sortable="true" Align="Align.Center" Title="Last Run Date" />
+                        <PropertyColumn Property="@(i => i.Count)" Sortable="true" Align="Align.Center" Title="Count" Class="small-smalltable-th" />
+                        <TemplateColumn Class="small-smalltable-th">
+                            <div class="dropdown">
+                                <i class="oi oi-ellipses buttonBar" type="button" @onclick="()=>ToggleDropdown(context.Recipe_Run_Id.ToString())"></i>
+                                @if (openRowId == context.Recipe_Run_Id.ToString())
+                                {
+                                    <div class="dropdown-menu show check" @onclick:stopPropagation @onmouseleave="CloseDropdown">
+                                        <button class="dropdown-item" @onclick="()=> OnDoubleClick(context)">TMU Analysis</button>
+                                    </div>
+                                }
+                            </div>
+                        </TemplateColumn>
+                    </QuickGrid>
+                </div>
+                <div>
+                    <Paginator Value="@Pagination" />
+                </div>
+            </div>
+            <div class="rv-flex-v-stack rv-flex-40 date-range-picker">
+                <DateRangePicker @bind-StartDate="StartDate"
+                         @bind-EndDate="EndDate"
+                         @bind-MinDate="StartDate"
+                         @bind-MaxDate="EndDate"
+                         OnRangeSelect="()=>HandleDateRange(new DateRangeInfo { Item = SelectedItem })"
+                         TimePicker24Hour="true"
+                         TimePicker="true"
+                         TimePickerSeconds="true">
+                    <PickerTemplate>
+                        <div id="@context.Id" @onclick="context.Toggle" class="date-picker-template">
+                            <i class="oi oi-calendar"></i>&nbsp;
+                            <span>@context.FormattedRange @(string.IsNullOrEmpty(context.FormattedRange) ? Constants.AnalysisViewPage.DatePickerText : string.Empty)</span>
+                            <i class="oi oi-chevron-bottom float-right"></i>
+                        </div>
+                    </PickerTemplate>
+                </DateRangePicker>
+            </div>
+        }
+    }
+</div>

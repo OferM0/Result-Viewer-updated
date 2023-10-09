@@ -1,0 +1,76 @@
+.top-row {
+    height: 3.5rem;
+}
+
+.menu {
+    width: 1.3em;
+    height: 1.3em;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+.logo {
+    width: 2.5em;
+    height: 2.5em;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.navbar-brand {
+    font-family: 'Roboto Condensed';
+    font-weight: 700;
+    font-size: 22px;
+    color: #47688C;
+}
+
+.nav-headline {
+    font-family: 'Inter';
+    font-size: 14px;
+    color: #808080;
+    text-align: center;
+    padding-top: 15px;
+}
+
+.navbar-icon {
+    width: 1.1em;
+    height: 1.1em;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.nav-item {
+    font-size: 1rem;
+    padding-bottom: 0.5rem;
+}
+
+.nav-item ::deep a {
+    color: #48517F;
+    border-radius: 10px;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    line-height: 3rem;
+}
+
+.nav-item ::deep a.active {
+    background-color: #A9CFF1;
+}
+
+.nav-item ::deep a:hover {
+    background-color: #A9CFF1;
+}
+
+.active-icon {
+    background-color: #A9CFF1;
+}
+
+.navbar {
+    padding-top: 0px;
+    background-color: #E8E8E8;
+}
+
+.item-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

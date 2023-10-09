@@ -1,0 +1,199 @@
+{
+  "LotItemComponent": {
+    "toTimeFormat": "MM/dd/yyyy hh:mm:ss",
+    "toAfterDotDoubleFormat": "F2"
+  },
+  "sidebarComponent": {
+    "mainHeaderTitle": "Result Viewer",
+    "dialogsTitle": "DIALOGS",
+    "viewsTitle": "VIEWS",
+    "dialogs": {
+      "open": "Open",
+      "save": "Save",
+      "print": "Print",
+      "copy": "Copy",
+      "delete": "Delete"
+    },
+    "views": {
+      "import": "Import",
+      "export": "Export",
+      "Report": "Report",
+      "combinedLot": "Combined Lot",
+      "reportConfiguration": "Report Configuration",
+      "analysis": "Analysis",
+      "machine": "Machine Connection",
+      "settings": "Range Settings"
+    }
+  },
+  "chartsComponent": {
+    "pieChartComponent": {
+      "lables": [ "Passed", "Failed" ]
+    },
+    "barChartComponent": {
+      "lables": [ "Error1", "Error2", "Error3", "Error4", "Error5" ]
+    }
+  },
+  "paginationComponent": {
+    "firstSpan": "Page",
+    "secondSpan": "Of",
+    "next": "Next",
+    "prev": "Prev",
+    "rowsPerPage": "14"
+  },
+  "analysisViewPage": {
+    "url": "analysis",
+    "mainTableHeaders": [ "Recipe Name", "First Run Date", "Last Run Date", "Count" ],
+    "exportTMUButtonName": "Export TMU Analysis",
+    "secondTableHeaders": [ "Date", "Lot", "TIS Mean X", "TIS Mean Y", "TIS 3σ X", "TIS 3σ Y", "Prec X", "Prec Y", "TMU X", "TMU Y", "TMU Total" ],
+    "datePickerText": "Choose dates...",
+    "exportDict": {
+      "Date": "Date",
+      "Lot": "Lot",
+      "TIS Mean X": "TIS_Mean_X",
+      "TIS Mean Y": "TIS_Mean_Y",
+      "TIS 3σ X": "TIS_3a_X",
+      "TIS 3σ Y": "TIS_3a_Y",
+      "Prec X": "Prec_X",
+      "Prec Y": "Prec_Y",
+      "TMU X": "TMU_X",
+      "TMU Y": "TMU_Y",
+      "TMU Total": "TMU_Total"
+    }
+  },
+  "rangeViewPage": {
+    "url": "settings",
+    "selectedRanges": {
+      "TIS_Mean_X": {
+        "field": "TIS Mean X",
+        "minValue": null,
+        "maxValue": null
+      },
+      "TIS_Mean_Y": {
+        "field": "TIS Mean Y",
+        "minValue": null,
+        "maxValue": null
+      },
+      "TIS_3σ_X": {
+        "field": "TIS 3σ X",
+        "minValue": null,
+        "maxValue": null
+      },
+      "TIS_3σ_Y": {
+        "field": "TIS 3σ Y",
+        "minValue": null,
+        "maxValue": null
+      },
+      "Prec_X": {
+        "field": "Prec X",
+        "minValue": null,
+        "maxValue": null
+      },
+      "Prec_Y": {
+        "field": "Prec Y",
+        "minValue": null,
+        "maxValue": null
+      },
+      "TMU_X": {
+        "field": "TMU X",
+        "minValue": null,
+        "maxValue": null
+      },
+      "TMU_Y": {
+        "field": "TMU Y",
+        "minValue": null,
+        "maxValue": null
+      },
+      "TMU_Total": {
+        "field": "TMU Total",
+        "minValue": null,
+        "maxValue": null
+      }
+    }
+  },
+  "reportViewPage": {
+    "url": "",
+    "statusPassed": "Passed",
+    "statusFailed": "Failed",
+    "mainTableHeaders": [ "Lot Name", "Run Date", "Status" ],
+    "sortingDropDownOptions": {
+      "sortBy": "Sort By",
+      "byRecent": "By Recent",
+      "byName": "By Name",
+      "byStatus": "By Status",
+      "byCount": "By Count"
+    },
+    "navigationDropDownOptions": {
+      "Lot Summary": "LotSummary",
+      "Raw Data": "RawData",
+      "Lot Statistics": "LotStatistics",
+      "Site Statistics": "SiteStatistics",
+      "Test Statistics": "TestStatistics",
+      "Wafer Statistics": "WaferStatistics",
+      "TIS Summary": "TISSummary",
+      "Error Summary": "ErrorSummary",
+      "Optimizer Summary": "OptimizerSummary"
+    },
+    "lotSummary": {
+      "mainHeaders": [ "Title", "Value" ],
+      "summaryTitles": {
+        "Lot_ID": "Lot ID",
+        "Recipe_Name": "Recipe Name",
+        "Tool_ID": "Tool ID",
+        "Operator_ID": "Operator ID",
+        "Stepper_ID": "Stepper ID",
+        "Cassette_ID": "Cassette ID",
+        "Comments": "Comments",
+        "TIS_Mode": "TIS Mode",
+        "Calibration_Mode": "Calibration Mode",
+        "Report_Date": "Report Date",
+        "Lot_Start_Date": "Lot Start Date",
+        "Lot_End_Date": "Lot End Date",
+        "Total_Run_Time": "Total Run Time",
+        "Number_of_Measured_Sites": "Number of Measured Sites",
+        "Number_of_Wafers": "Number of Wafers",
+        "Number_of_Iterations": "Number of Iterations",
+        "Number_of_Tests": "Number of Tests",
+        "Failure_Percentage": "Failure Percentage",
+        "Recipe_Version": "Recipe Version",
+        "Recipe_Created": "Recipe Created",
+        "Recipe_Modified": "Recipe Modified",
+        "Wafer_Size": "Wafer Size",
+        "Wafer_Type": "Wafer Type",
+        "Wafer_Orientation": "Wafer Orientation",
+        "Field_Size": "Field Size",
+        "Number_of_Dies": "Number of Dies"
+      }
+    },
+    "exportDict": {
+      "Date-Time": "DateTime",
+      "Lot": "Lot",
+      "Operator": "Operator",
+      "Program": "Program",
+      "Slot #": "SlotNum",
+      "Wafer Num": "WaferNum",
+      "Wafer ID": "WaferID",
+      "XDieSize": "X Die Size",
+      "YDieSize": "Y Die Size",
+      "Test ID": "TestID",
+      "Test Type": "TestType",
+      "Test Label": "TestLabel",
+      "Location X": "LocationX",
+      "Location Y": "LocationY",
+      "Field X": "FieldX",
+      "Field Y": "FieldY",
+      "Array X": "ArrayX",
+      "Array Y": "ArrayY",
+      "Target Location X(mm)": "TargetLocationX",
+      "Target Location Y(mm)": "TargetLocationY",
+      "Wafer Location X(mm)": "WaferLocationX",
+      "Wafer Location Y(mm)": "WaferLocationY",
+      "Mreg X(mm)": "MregX",
+      "Mreg Y(mm)": "MregY"
+    },
+    "exportTitles": [ "Date-Time", "Lot", "Operator", "Program", "Slot #", "Wafer Num", "Wafer ID", "Test ID", "Test Type", "Test Label", "Location X", "Location Y", "Field X", "Field Y", "Array X", "Array Y", "Target Location X(mm)", "Target Location Y(mm)", "Wafer Location X(mm)", "Wafer Location Y(mm)", "Mreg X(mm)", "Mreg Y(mm)" ],
+    "rawData": {
+      "mainHeaders": [ "Raw Data - AROL" ],
+      "rawDataTitles": [ "Test Num", "Test Type", "Field X", "Field Y", "Array X", "Array Y", "Misreg X(nm) ", "Misreg Y(nm) ", "TIS X Correction(nm)", "TIS Y Correction(nm)", "Pass/Fail", "Fail Reason", "PasymOVL X(nm)", "PasymOVL Y(nm)" ]
+    }
+  }
+}

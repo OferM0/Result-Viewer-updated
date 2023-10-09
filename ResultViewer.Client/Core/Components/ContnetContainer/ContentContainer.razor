@@ -1,0 +1,98 @@
+﻿@using ResultViewer.Client.Core.Components.DropDown
+@using ResultViewer.Client.Core.Components.FloatingCloseButton
+@using ResultViewer.Client.Core.Components.LotItem
+@using ResultViewer.Client.Core.Entities.Local;
+@using ResultViewer.Client.Core.Enums;
+@using ResultViewer.Client.Pages.ReportView.Components.LotSummaryItem
+@using ResultViewer.Client.Core.Components.Pagination;
+@using static ResultViewer.Client.Core.Components.LotItem.LotItem;
+@using ResultViewer.Client.Pages.ReportView.Components.RawData
+@using ResultViewer.Client.Pages.AnalysisView.Components.AnalysisItem;
+@using ResultViewer.Client.Pages.AnalysisView.Components.RecipeAnalysisItem;
+
+<div class="content-container rv-flex-v-stack rv-flex-align-center">
+    <div class="rv-flex-h-stack">
+    @if (DropDownOptions != null && DropDownOptions.Count > 0)
+    {
+        <DropDown Options="DropDownOptions" OnChangeEvent="HandleDropDownChange"></DropDown>
+    }
+    </div>
+
+    <div class="table-container" style="height:@Height;width:@Width">
+        @if (IsCloseButtonEnabled)
+        {
+            <FloatingCloseButton OnCloseClick="HandleOnCloseButtonClick"></FloatingCloseButton>
+        }
+        <div class="table">
+            <div class="headline-container">
+                <div class="rv-flex-h-stack rv-flex-justify-space-around">
+                    @if (Headers != null)
+                    {
+                        foreach (var headline in Headers)
+                        {
+                            if ((Headers.ElementAt(0) == headline || Headers.ElementAt(1) == headline) && IsTMUTable == true)
+                            {
+                                <div class="rv-flex-12 item-text">@headline</div>
+                            }
+                            else
+                            {
+                                <div class="rv-flex-equal item-text">@headline</div>
+                            }
+                        }
+                    }
+                </div>
+            </div>
+                @switch (ViewType)
+                {
+                    case ContentViewType.ReportView:
+                        foreach (var item in CurrentItems.Cast<ReportItem>())
+                        {
+                            <LotItem 
+                                OnDoubleClick="OnItemDoubleClick" 
+                                item="item"                                                          
+                                OnExportClicked="OnExportClick">
+                            </LotItem>
+                        }
+                        break;
+                    case ContentViewType.SummaryView:
+                        foreach (var item in Items.Cast<SummaryItem>())
+                        {
+                            if ((ReportViewDropDownOptions)SelectedDropDownOption == ReportViewDropDownOptions.LotSummary)
+                            {
+                                <LotSummaryItem item="item"></LotSummaryItem>
+                            }
+                           
+                        }
+                        if ((ReportViewDropDownOptions)SelectedDropDownOption == ReportViewDropDownOptions.RawData)
+                        {
+                            <RawData LotId="LotId"></RawData>
+                        }
+                        break;
+                    case ContentViewType.AnalysisView:
+                        foreach (var item in CurrentItems.Cast<ResultViewer.Client.Core.Entities.Local.AnalysisItem>())
+                        {
+                            <AnalysisItem 
+                                item="item"
+                                OnDoubleClick="OnAnalysisItemDoubleClick">
+                        </AnalysisItem>
+                    }
+                    break;
+                    case ContentViewType.RecipeAnalysisView:
+                    foreach (var item in CurrentItems.Cast<RecipeDataAnalysisItem>())
+                        {
+                            <RecipeAnalysisItem item="item"></RecipeAnalysisItem>
+                        }
+                        break;
+                    case ContentViewType.ExportView:
+                        break;
+                }
+        </div>
+    </div>
+
+    @if (IsPaginated)
+    {
+        <div class="rv-flex-justify-center">
+            <Pagination CurrentPage="@CurrentPage" RowsPerPage="@RowsPerPage" TotalRows="@TotalRows" OnPageChanged="@OnPageChanged" />
+        </div>
+    }
+</div>

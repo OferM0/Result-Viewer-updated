@@ -1,0 +1,20 @@
+﻿{
+    "data": {
+        "recipeRunById": {
+            "recipe_Run_Id": "1f8115e2-d20e-11eb-85b9-005056b27306",
+            "version_String": "18.00.02.03400",
+            "recipe_Creation_Date": 1624223490,
+            "recipe_Modification_Date": 1624224223,
+            "wafer_Size": 3000000000,
+            "wafer_Type": 2,
+            "wafer_Orientation": 270,
+            "lotRuns": [
+                {
+                    "run_Id": "bc9989a2-ff72-4daa-822b-88505d25ec18",
+                    "lot_Name": "sanity_21-06-2021_00-23-42",
+                    "lot_Status": 0
+                }
+            ]
+        }
+    }
+}

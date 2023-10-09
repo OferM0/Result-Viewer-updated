@@ -1,0 +1,28 @@
+﻿@page "/report/{lotName}"
+@inject NavigationManager NavManager
+@using ResultViewer.Client.Core.Components.Loading
+
+<Breadcrumb Breadcrumbs="Breadcrumbs"></Breadcrumb>
+
+<div class="rv-flex-h-stack rv-flex-justify-space-evenly">
+    @if (LotSummaryItems.Count() == 0)
+    {
+        <Loading />
+    }
+    else
+    {
+        <div class="rv-flex-v-stack rv-flex-85 rv-flex-center">
+            <ContentContainer 
+                IsCloseButtonEnabled="false" 
+                 DropDownOptions="NavigationOptions.Keys.ToList()" 
+                OnDropDownChange="HandleDropDownChange" 
+                SelectedDropDownOption="SelectedReportViewDropDownOption" 
+                ViewType="ContentViewType.SummaryView" 
+                Items="LotSummaryItems.Cast<object>().ToList()" 
+                LotId="LotId" 
+                Headers="Headers" 
+                IsPaginated="false"
+                Height="81vh"/>
+        </div>
+    }
+</div>

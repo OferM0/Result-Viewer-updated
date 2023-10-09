@@ -1,0 +1,20 @@
+﻿@inject NavigationManager NavManager
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        @if(Breadcrumbs != null)
+        {
+            foreach(var breadCumb in Breadcrumbs)
+            {
+                if(Breadcrumbs.Last() != breadCumb)
+                {
+                    <li class="breadcrumb-item"><a class="rv-a-onclick" @onclick="()=>{TransportState(breadCumb.Url);}">@breadCumb.Title</a></li>
+                }
+                else
+                {
+                    <li class="breadcrumb-item active" aria-current="page">@breadCumb.Title</li>
+                }
+            }
+        }
+    </ol>
+</nav>

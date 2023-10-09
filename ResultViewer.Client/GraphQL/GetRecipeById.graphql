@@ -1,0 +1,16 @@
+﻿query GetRecipeById ($id: UUID!){
+    recipeRunById(id: $id) {
+      recipe_Run_Id,
+      version_String,
+      recipe_Creation_Date,
+      recipe_Modification_Date,
+      wafer_Size,
+      wafer_Type,
+      wafer_Orientation,
+      lotRuns {
+        run_Id,
+        lot_Name,
+        lot_Status,
+      }
+    }
+}

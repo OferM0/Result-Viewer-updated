@@ -1,0 +1,58 @@
+﻿@page "/analysis/{recipeName}"
+@inject NavigationManager NavManager
+@using ResultViewer.Client.Core.Components.Loading
+
+<Breadcrumb Breadcrumbs="Breadcrumbs"></Breadcrumb>
+
+<div class="rv-flex-h-stack rv-flex-justify-space-evenly">
+
+    @if (DataItems.Count() == 0 && NoLotsInSelectedRangeDate == false)
+    {
+        <Loading/>
+    }
+    else if (NoLotsInSelectedRangeDate == true)
+    {
+        <h1>There are no lots in this date range, please select wider range...</h1>
+    }
+    else if (DataItems.Count() > 0 && NoLotsInSelectedRangeDate == false)
+    {
+        <div class="rv-flex-v-stack">
+            <div class="rv-flex-start justify-content-between">
+                <div class="rv-flex rv-flex-justify-center">
+                    <span class="filter-headline">Filter valid lines</span>
+                    <label class="switch">
+                        <input type="checkbox" class="checkbox" @onclick="ToggleFilter">
+                        <div class="slider"></div>
+                    </label>
+                </div>
+
+                <button class="export-btn" @onclick='() => OnExportClick()'>@Constants.AnalysisViewPage.ExportTMUButtonName</button>
+            </div>
+            
+            <div class="rv-flex-v-stack rv-flex-center">
+        
+                @if (!IsFilter)
+                {
+                    <ContentContainer 
+                    ViewType="ContentViewType.RecipeAnalysisView"
+                    Items="DataItems.Cast<object>().ToList()" 
+                    Headers="MainTableHeaders" 
+                    Height="77vh"
+                    Width="80vw"
+                    IsTMUTable=true/>
+                }
+                else
+                {
+                    <ContentContainer 
+                    ViewType="ContentViewType.RecipeAnalysisView"
+                    Items="FilteredDataItems.Cast<object>().ToList()" 
+                    Headers="MainTableHeaders" 
+                    Height="77vh"
+                    Width="80vw"
+                    IsTMUTable=true />
+                }
+            </div>
+        </div>
+
+    }
+</div>

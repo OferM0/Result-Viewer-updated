@@ -1,0 +1,11 @@
+﻿﻿@using ResultViewer.Client.Core.Constants;
+@using ResultViewer.Client.Core.Entities.Local;
+
+<div @ondblclick="OnAnalysisItemDoubleClick" class="analysis-item-container">
+    <div class="rv-flex-h-stack rv-flex-justify-space-around">
+        <div class="rv-flex-equal item-text" data-hover=@item.RecipeName>@item.RecipeName</div>
+        <div class="rv-flex-equal">@item.FirstRunDate.ToString(Constants.LotItemComponent.ToTimeFormat)</div>
+        <div class="rv-flex-equal">@item.LastRunDate.ToString(Constants.LotItemComponent.ToTimeFormat)</div>
+        <div class="rv-flex-equal">@item.Count</div>
+    </div>
+</div>

@@ -1,0 +1,1101 @@
+﻿schema {
+  query: Query
+  mutation: Mutation
+}
+
+"Represents the type of the lot run."
+type LotRun {
+  "Represents the id of the lot run."
+  run_Id: UUID!
+  "Represents the name of the lot run."
+  lot_Name: String
+  "Represents the recipe name related to the lot run."
+  recipe_Name: String
+  "Represents the run status of the lot run."
+  lot_Status: Float!
+  "Represents the starting time of the lot run."
+  run_Start_Time: Float!
+  "Represents the ending time of the lot run."
+  run_End_Time: Float!
+  "Represents a list of available wafer runs for this lot run."
+  waferRuns: [WaferRun]
+  "Represents a list of available measurements for this lot run."
+  measurements: [Measurement]
+  "Represents the lotRun object for this wafer run."
+  recipeRun: RecipeRun
+  stepper_Id: String
+  operator_Name: String
+  tool_Id: String
+  failed_Wafers: Float!
+  failed_Sites: Float!
+  comments: String
+  stepper_Id_2: String
+  recipe_Run_Id: UUID
+  slot_Map: Float!
+  iteration: Float!
+  calibration_Mode: Float!
+  port_Num: Float!
+  arp_Flag: Float!
+  tis_Mode: Float!
+  access_Method: Float!
+  lied_File_Flag: Decimal!
+  control_Job_Id: String
+  process_Job_Id: String
+  carrier_Id: String
+  analysis_Recipe_Name: String
+  handling_Mode: Decimal!
+  ds_Iteration_Number: Decimal!
+  calc_Qmerit: Byte!
+  is_ATM_Selected: Byte!
+  calc_Qmerit_Layer: Byte!
+  modeled_TIS_Run_Enabled: Byte!
+  imaging_Accuracy_Metrics: Long!
+}
+
+"Represents the type of the wafer run."
+type WaferRun {
+  "Represents the id for the lot run."
+  run_Id: UUID!
+  "Represents the name for the wafer run."
+  wafer_Run_Id: UUID!
+  "Represents the ordinal number of the wafer run."
+  wafer_Ordinal_Num: Decimal!
+  "Represents the starting time of the wafer run."
+  wafer_Start_Time: Decimal!
+  "Represents the ending time of the lot run"
+  wafer_End_Time: Decimal!
+  "Represents the conditional site mode of the wafer run"
+  conditional_Site_Mode: Byte!
+  "Represents the lotRun object for this wafer run."
+  lotRun: LotRun
+  images_Meta_Data_Path: String
+}
+
+"Represents the type of the recipe run."
+type RecipeRun {
+  "Represents the id of the recipe run."
+  recipe_Run_Id: UUID!
+  "Represents the name of the recipe run."
+  recipe_Name: String!
+  "Represents the lot runs list related to the recipe run."
+  lotRuns: [LotRun]
+  "Represents the lot runs list related to the recipe run."
+  testRecipeRuns: [TestRecipeRun]
+  recipe_Modification_Date: Decimal!
+  version_String: String
+  recipe_Creation_Date: Decimal!
+  export_To: Float!
+  eye_Point_Position_X: Float!
+  eye_Point_Position_Y: Float!
+  i_Die_O: Decimal!
+  j_Die_O: Decimal!
+  wafer_Size: Decimal!
+  wafer_Orientation: Decimal!
+  die_Size_X: Float!
+  die_Size_Y: Float!
+  chip_Die_X: Float!
+  chip_Die_Y: Float!
+  wafer_Type: Decimal!
+  shape: Decimal!
+  bricked: Decimal!
+  x_WM_Offset_Vector: Float!
+  y_WM_Offset_Vector: Float!
+  wafer_Map_Real_Size_X: Decimal!
+  wafer_Map_Real_Size_Y: Decimal!
+  start_Pos_Wafer_X: Decimal!
+  start_Pos_Wafer_Y: Decimal!
+  wafer_Die_Array: [Byte!]
+  r1_Origin_Point: Decimal!
+  ep_TO_LLC_X: Float!
+  ep_TO_LLC_Y: Float!
+  original_Recipe_Run_Id: UUID!
+  wafer_Load_Angle: Decimal!
+}
+
+"Represents the type of the test recipe run."
+type TestRecipeRun {
+  "Represents the id of the test recipe run."
+  test_Recipe_Run_Id: UUID!
+  "Represents the id of the recipe run."
+  recipe_Run_Id: UUID!
+  "Represents the lot runs list related to the test recipe run."
+  recipeRun: RecipeRun
+  test_Number: Decimal!
+  test_Type: Decimal!
+  persents_Sites_To_Fail: Decimal!
+  tis_Method: Decimal!
+  is_Arrayed: Decimal!
+  array_Dimension_X: Decimal!
+  array_Dimension_Y: Decimal!
+  array_Delta_X: Float!
+  array_Delta_Y: Float!
+  location_X: Float!
+  location_Y: Float!
+  site_Offset_Xy_X: Float!
+  site_Offset_Xy_Y: Float!
+  kla_Ref_Sell_X: Decimal!
+  kla_Ref_Sell_Y: Decimal!
+  user_Ref_Sell_X: Decimal!
+  user_Ref_Sell_Y: Decimal!
+  is_Enable: Decimal!
+  array_Test_List: [Byte!]
+  test_Label: String
+  r3_Origin_Point: Decimal!
+  is_Trained: Decimal!
+}
+
+"Represents the input to create and update for a result."
+input LotRunInput {
+  "Represents the name for the lot run."
+  lot_Name: String
+  "Represents the recipe name related to the lot run."
+  recipe_Name: String
+  "Represents the run status of the lot run."
+  lot_Status: Float!
+  "Represents the starting time of the lot run"
+  run_Start_Time: Float!
+  "Represents the ending time of the lot run"
+  run_End_Time: Float!
+}
+
+"Represents the payload to return for a created or updated lot run."
+type LotRunPayload {
+  "Represents the lot run object."
+  lotRun: LotRun
+}
+
+"Represents the type of the measurement."
+type Measurement {
+  "Represents the id of the measurement."
+  measurement_Id: UUID!
+  "Represents the id of the lot run."
+  run_Id: UUID!
+  "Represents the ordinal number of the wafer."
+  wafer_Ordinal_Num: Float!
+  "Represents the id of the wafer."
+  wafer_Id: String
+  "Represents the slot number."
+  slot_Num: Float!
+  "Represents the test number."
+  test_Num: Float!
+  "Represents the X-coordinate of the die."
+  x_Die: Float!
+  "Represents the Y-coordinate of the die."
+  y_Die: Float!
+  "Represents the X-coordinate of the element."
+  x_Element: Float!
+  "Represents the Y-coordinate of the element."
+  y_Element: Float!
+  "Represents the X-coordinate of the location."
+  x_Location: Float!
+  "Represents the Y-coordinate of the location."
+  y_Location: Float!
+  "Represents the static iteration."
+  static_Iteration: Float!
+  "Represents the orientation."
+  orientation: Float!
+  "Represents the slice."
+  slice: Float!
+  "Represents the status."
+  status: Float!
+  "Represents the reason for failure."
+  fail_Reason: String
+  "Represents the site serial number."
+  site_Serial_Num: Float!
+  "Represents the path of image 1."
+  image_Path1: String
+  "Represents the path of image 2."
+  image_Path2: String
+  "Represents the path of image 3."
+  image_Path3: String
+  "Represents the test label."
+  test_Label: String
+  "Represents the X-coordinate of the wafer."
+  wafer_X: Float!
+  "Represents the Y-coordinate of the wafer."
+  wafer_Y: Float!
+  "Indicates if the measurement is unpatterned."
+  is_Unpatterned: Decimal!
+  "Indicates if the measurement is a vertical target."
+  is_Vertical_Target: Decimal!
+  "Represents the start time of the run."
+  run_Start_Time: Float!
+  "Represents the archive path."
+  archive_Path: String
+  "Indicates if the measurement is compressed."
+  is_Compressed: Byte!
+  "Represents the scheme libraries."
+  scheme_Libraries: Decimal!
+  "Represents a list of available lot runs for this measurement."
+  lotRun: LotRun
+  "Represents an object of available AROLMeasurement for this measurement."
+  arolMeasurement: AROLMeasurement
+  "Represents an object of available AROLAccuracy for this measurement."
+  arolAccuracy: AROLAccuracy
+  measurement_Type: Float!
+}
+
+"Represents the type of the arol measurement."
+type AROLMeasurement {
+  "Represents the id of the measurement."
+  measurement_Id: UUID!
+  "Represents the X-coordinate misregistration."
+  x_Misreg: Float
+  "Represents the Y-coordinate misregistration."
+  y_Misreg: Float
+  "Represents the X-coordinate TIS."
+  x_Tis: Float
+  "Represents the Y-coordinate TIS."
+  y_Tis: Float
+  "Represents the couple ID."
+  couple_Id: Decimal
+  "Represents the start time of the run."
+  run_Start_Time: Float!
+  "Indicates if TIS is measured."
+  measured_Tis: Byte!
+  "Represents the X-coordinate WIS."
+  x_Wis: Float
+  "Represents the Y-coordinate WIS."
+  y_Wis: Float
+  "Represents the associated Measurement."
+  measurement: Measurement
+}
+
+"Represents the type of the arol accuracy."
+type AROLAccuracy {
+  "Represents the id of the measurement."
+  measurement_Id: UUID!
+  "Represents the X Pasym OVL value."
+  x_Pasym_Ovl: Float
+  "Represents the X Pasym OVL 3S value."
+  x_Pasym_Ovl_3S: Float
+  "Represents the X Pasym D1 value."
+  x_Pasym_D1: Float
+  "Represents the X Pasym D1 3S value."
+  x_Pasym_D1_3S: Float
+  "Represents the X Pasym D2 value."
+  x_Pasym_D2: Float
+  "Represents the X Pasym D2 3S value."
+  x_Pasym_D2_3S: Float
+  "Represents the X Pplin DOVL value."
+  x_Pplin_Dovl: Float
+  "Represents the X Pplin CHIRSQ value."
+  x_Pplin_Chirsq: Float
+  "Represents the X Pplin A SLOPE value."
+  x_Pplin_A_Slope: Float
+  "Represents the X Pplin A DRSQR value."
+  x_Pplin_A_Drsqr: Float
+  "Represents the X Pupil 3S value."
+  x_Pupil_3S: Float
+  "Represents the run start time."
+  run_Start_Time: Float!
+  "Represents the Y Pasym OVL value."
+  y_Pasym_Ovl: Float
+  "Represents the Y Pasym OVL 3S value."
+  y_Pasym_Ovl_3S: Float
+  "Represents the Y Pasym D1 value."
+  y_Pasym_D1: Float
+  "Represents the Y Pasym D1 3S value."
+  y_Pasym_D1_3S: Float
+  "Represents the Y Pasym D2 value."
+  y_Pasym_D2: Float
+  "Represents the Y Pasym D2 3S value."
+  y_Pasym_D2_3S: Float
+  "Represents the Y Pplin DOVL value."
+  y_Pplin_Dovl: Float
+  "Represents the Y Pplin CHIRSQ value."
+  y_Pplin_Chirsq: Float
+  "Represents the Y Pplin A SLOPE value."
+  y_Pplin_A_Slope: Float
+  "Represents the Y Pplin A DRSQR value."
+  y_Pplin_A_Drsqr: Float
+  "Represents the Y Pupil 3S value."
+  y_Pupil_3S: Float
+  "Represents the X OVL sensitivity value."
+  x_Ovl_Sensitivity: Float
+  "Represents the X valid pixels value."
+  x_Valid_Pixels: Float
+  "Represents the Y OVL sensitivity value."
+  y_Ovl_Sensitivity: Float
+  "Represents the Y valid pixels value."
+  y_Valid_Pixels: Float
+  "Represents the X reflectivity value."
+  x_Reflectivity: Float
+  "Represents the Y reflectivity value."
+  y_Reflectivity: Float
+  "Represents the X intensity value."
+  x_Intensity: Float
+  "Represents the Y intensity value."
+  y_Intensity: Float
+  "Represents the X pupil R value."
+  x_Pupil_R: Float
+  "Represents the Y pupil R value."
+  y_Pupil_R: Float
+  "Represents the X MEB value."
+  x_MEB: Float
+  "Represents the Y MEB value."
+  y_MEB: Float
+  "Represents the X PCI value."
+  x_PCI: Float
+  "Represents the Y PCI value."
+  y_PCI: Float
+  "Represents the X separation intensity 1 value."
+  x_Sep_Intensity_1: Float
+  "Represents the Y separation intensity 1 value."
+  y_Sep_Intensity_1: Float
+  "Represents the X separation intensity 2 value."
+  x_Sep_Intensity_2: Float
+  "Represents the Y separation intensity 2 value."
+  y_Sep_Intensity_2: Float
+  "Represents the X separation intensity 3 value."
+  x_Sep_Intensity_3: Float
+  "Represents the Y separation intensity 3 value."
+  y_Sep_Intensity_3: Float
+  "Represents the X separation intensity 4 value."
+  x_Sep_Intensity_4: Float
+  "Represents the Y separation intensity 4 value."
+  y_Sep_Intensity_4: Float
+  "Represents the acquisition correction H value."
+  acq_Correction_H: Float
+  "Represents the acquisition correction V value."
+  acq_Correction_V: Float
+  "Represents the X maximum signal value."
+  x_Max_Signal: Float
+  "Represents the Y maximum signal value."
+  y_Max_Signal: Float
+  "Represents the X PCA ratio value."
+  x_PCA_Ratio: Float
+  "Represents the Y PCA ratio value."
+  y_PCA_Ratio: Float
+  "Represents the X SE maximum WL value."
+  x_SE_Max_WL: Float
+  "Represents the Y SE maximum WL value."
+  y_SE_Max_WL: Float
+  "Represents the X SE mean WL value."
+  x_SE_Mean_WL: Float
+  "Represents the Y SE mean WL value."
+  y_SE_Mean_WL: Float
+  "Represents the X delta A mean value."
+  x_Delta_A_Mean: Float
+  "Represents the Y delta A mean value."
+  y_Delta_A_Mean: Float
+  "Represents the X delta A 3SIG value."
+  x_Delta_A_3SIG: Float
+  "Represents the Y delta A 3SIG value."
+  y_Delta_A_3SIG: Float
+  "Represents the X SE mean max WL ratio value."
+  x_SE_Mean_Max_WL_Ratio: Float
+  "Represents the Y SE mean max WL ratio value."
+  y_SE_Mean_Max_WL_Ratio: Float
+  "Represents the X pad-to-pad ratio value."
+  x_Pad_To_Pad_Ratio: Float
+  "Represents the Y pad-to-pad ratio value."
+  y_Pad_To_Pad_Ratio: Float
+  "Represents the MMA found location diff H value."
+  mma_Found_Location_Diff_H: Float
+  "Represents the MMA found location diff V value."
+  mma_Found_Location_Diff_V: Float
+  "Represents the X PV predictor value."
+  x_PV_Predictor: Float
+  "Represents the X TIS predictor value."
+  x_TIS_Predictor: Float
+  "Represents the Y PV predictor value."
+  y_PV_Predictor: Float
+  "Represents the Y TIS predictor value."
+  y_TIS_Predictor: Float
+  "Represents the acquisition score value."
+  acq_Score: Float
+  "Represents the acquisition method value."
+  acq_Method: Float
+  "Represents the acquisition mode value."
+  acq_Mode: Float
+  "Represents the X BPW value."
+  x_BPW: Float
+  "Represents the Y BPW value."
+  y_BPW: Float
+  "Represents the X SPW value."
+  x_SPW: Float
+  "Represents the Y SPW value."
+  y_SPW: Float
+  "Represents the associated Measurement."
+  measurement: Measurement
+}
+
+type Query {
+  "Returns all the lot runs"
+  allLotRuns(where: LotRunFilterInput order: [LotRunSortInput!]): [LotRun]
+  "Returns lot run by id"
+  lotRunById(id: UUID!): LotRun
+  "Returns all the wafer runs"
+  allWaferRuns(where: WaferRunFilterInput order: [WaferRunSortInput!]): [WaferRun]
+  "Returns wafer run by id"
+  waferRunById(id: UUID!): WaferRun
+  "Returns all the recipe runs"
+  allRecipeRuns(where: RecipeRunFilterInput order: [RecipeRunSortInput!]): [RecipeRun]
+  "Returns recipe run by id"
+  recipeRunById(id: UUID!): RecipeRun
+  "Returns all the test recipe runs"
+  allTestRecipeRuns(where: TestRecipeRunFilterInput order: [TestRecipeRunSortInput!]): [TestRecipeRun]
+  "Returns test recipe run by id"
+  testRecipeRunById(id: UUID!): TestRecipeRun
+  "Returns all the measurement"
+  allMeasurements(where: MeasurementFilterInput): [Measurement]
+  "Returns measurement by id"
+  measurementById(id: UUID!): Measurement
+  "Returns all the arol measurement"
+  allAROLMeasurements(where: AROLMeasurementFilterInput order: [AROLMeasurementSortInput!]): [AROLMeasurement]
+  "Returns arol measurement by id"
+  arolMeasurementById(id: UUID!): AROLMeasurement
+  "Returns all the arol accuracies"
+  allAROLAccuracies(where: AROLAccuracyFilterInput order: [AROLAccuracySortInput!]): [AROLAccuracy]
+  "Returns arol accuracy by id"
+  arolAccuracyById(id: UUID!): AROLAccuracy
+}
+
+type Mutation {
+  "Creates a new lot run"
+  createLotRun(lotRun: LotRunInput): LotRunPayload
+  "Updates lot run by id"
+  updateLotRunById(id: UUID! lotRun: LotRunInput): LotRunPayload
+}
+
+scalar UUID
+
+"The built-in `Decimal` scalar type."
+scalar Decimal
+
+"The `Byte` scalar type represents non-fractional whole numeric values. Byte can represent values between 0 and 255."
+scalar Byte
+
+"The `Long` scalar type represents non-fractional signed whole 64-bit numeric values. Long can represent values between -(2^63) and 2^63 - 1."
+scalar Long
+
+input LotRunFilterInput {
+  and: [LotRunFilterInput!]
+  or: [LotRunFilterInput!]
+  run_Id: UuidOperationFilterInput
+  lot_Name: StringOperationFilterInput
+  lot_Status: FloatOperationFilterInput
+  recipe_Name: StringOperationFilterInput
+  run_Start_Time: FloatOperationFilterInput
+  run_End_Time: FloatOperationFilterInput
+  stepper_Id: StringOperationFilterInput
+  operator_Name: StringOperationFilterInput
+  tool_Id: StringOperationFilterInput
+  failed_Wafers: FloatOperationFilterInput
+  failed_Sites: FloatOperationFilterInput
+  comments: StringOperationFilterInput
+  stepper_Id_2: StringOperationFilterInput
+  recipe_Run_Id: UuidOperationFilterInput
+  slot_Map: FloatOperationFilterInput
+  iteration: FloatOperationFilterInput
+  calibration_Mode: FloatOperationFilterInput
+  port_Num: FloatOperationFilterInput
+  arp_Flag: FloatOperationFilterInput
+  tis_Mode: FloatOperationFilterInput
+  access_Method: FloatOperationFilterInput
+  lied_File_Flag: DecimalOperationFilterInput
+  control_Job_Id: StringOperationFilterInput
+  process_Job_Id: StringOperationFilterInput
+  carrier_Id: StringOperationFilterInput
+  analysis_Recipe_Name: StringOperationFilterInput
+  handling_Mode: DecimalOperationFilterInput
+  ds_Iteration_Number: DecimalOperationFilterInput
+  calc_Qmerit: ByteOperationFilterInput
+  is_ATM_Selected: ByteOperationFilterInput
+  calc_Qmerit_Layer: ByteOperationFilterInput
+  modeled_TIS_Run_Enabled: ByteOperationFilterInput
+  imaging_Accuracy_Metrics: LongOperationFilterInput
+  waferRuns: ListFilterInputTypeOfWaferRunFilterInput
+  recipeRun: RecipeRunFilterInput
+  measurements: ListFilterInputTypeOfMeasurementFilterInput
+}
+
+input LotRunSortInput {
+  run_Id: SortEnumType
+  lot_Name: SortEnumType
+  lot_Status: SortEnumType
+  recipe_Name: SortEnumType
+  run_Start_Time: SortEnumType
+  run_End_Time: SortEnumType
+  stepper_Id: SortEnumType
+  operator_Name: SortEnumType
+  tool_Id: SortEnumType
+  failed_Wafers: SortEnumType
+  failed_Sites: SortEnumType
+  comments: SortEnumType
+  stepper_Id_2: SortEnumType
+  recipe_Run_Id: SortEnumType
+  slot_Map: SortEnumType
+  iteration: SortEnumType
+  calibration_Mode: SortEnumType
+  port_Num: SortEnumType
+  arp_Flag: SortEnumType
+  tis_Mode: SortEnumType
+  access_Method: SortEnumType
+  lied_File_Flag: SortEnumType
+  control_Job_Id: SortEnumType
+  process_Job_Id: SortEnumType
+  carrier_Id: SortEnumType
+  analysis_Recipe_Name: SortEnumType
+  handling_Mode: SortEnumType
+  ds_Iteration_Number: SortEnumType
+  calc_Qmerit: SortEnumType
+  is_ATM_Selected: SortEnumType
+  calc_Qmerit_Layer: SortEnumType
+  modeled_TIS_Run_Enabled: SortEnumType
+  imaging_Accuracy_Metrics: SortEnumType
+  recipeRun: RecipeRunSortInput
+}
+
+input WaferRunFilterInput {
+  and: [WaferRunFilterInput!]
+  or: [WaferRunFilterInput!]
+  wafer_Run_Id: UuidOperationFilterInput
+  run_Id: UuidOperationFilterInput
+  wafer_Ordinal_Num: DecimalOperationFilterInput
+  wafer_Start_Time: DecimalOperationFilterInput
+  wafer_End_Time: DecimalOperationFilterInput
+  conditional_Site_Mode: ByteOperationFilterInput
+  images_Meta_Data_Path: StringOperationFilterInput
+  lotRun: LotRunFilterInput
+}
+
+input WaferRunSortInput {
+  wafer_Run_Id: SortEnumType
+  run_Id: SortEnumType
+  wafer_Ordinal_Num: SortEnumType
+  wafer_Start_Time: SortEnumType
+  wafer_End_Time: SortEnumType
+  conditional_Site_Mode: SortEnumType
+  images_Meta_Data_Path: SortEnumType
+  lotRun: LotRunSortInput
+}
+
+input RecipeRunFilterInput {
+  and: [RecipeRunFilterInput!]
+  or: [RecipeRunFilterInput!]
+  recipe_Run_Id: UuidOperationFilterInput
+  recipe_Name: StringOperationFilterInput
+  recipe_Modification_Date: DecimalOperationFilterInput
+  version_String: StringOperationFilterInput
+  recipe_Creation_Date: DecimalOperationFilterInput
+  export_To: FloatOperationFilterInput
+  eye_Point_Position_X: FloatOperationFilterInput
+  eye_Point_Position_Y: FloatOperationFilterInput
+  i_Die_O: DecimalOperationFilterInput
+  j_Die_O: DecimalOperationFilterInput
+  wafer_Size: DecimalOperationFilterInput
+  wafer_Orientation: DecimalOperationFilterInput
+  die_Size_X: FloatOperationFilterInput
+  die_Size_Y: FloatOperationFilterInput
+  chip_Die_X: FloatOperationFilterInput
+  chip_Die_Y: FloatOperationFilterInput
+  wafer_Type: DecimalOperationFilterInput
+  shape: DecimalOperationFilterInput
+  bricked: DecimalOperationFilterInput
+  x_WM_Offset_Vector: FloatOperationFilterInput
+  y_WM_Offset_Vector: FloatOperationFilterInput
+  wafer_Map_Real_Size_X: DecimalOperationFilterInput
+  wafer_Map_Real_Size_Y: DecimalOperationFilterInput
+  start_Pos_Wafer_X: DecimalOperationFilterInput
+  start_Pos_Wafer_Y: DecimalOperationFilterInput
+  wafer_Die_Array: ListByteOperationFilterInput
+  r1_Origin_Point: DecimalOperationFilterInput
+  ep_TO_LLC_X: FloatOperationFilterInput
+  ep_TO_LLC_Y: FloatOperationFilterInput
+  original_Recipe_Run_Id: UuidOperationFilterInput
+  wafer_Load_Angle: DecimalOperationFilterInput
+  lotRuns: ListFilterInputTypeOfLotRunFilterInput
+  testRecipeRuns: ListFilterInputTypeOfTestRecipeRunFilterInput
+}
+
+input RecipeRunSortInput {
+  recipe_Run_Id: SortEnumType
+  recipe_Name: SortEnumType
+  recipe_Modification_Date: SortEnumType
+  version_String: SortEnumType
+  recipe_Creation_Date: SortEnumType
+  export_To: SortEnumType
+  eye_Point_Position_X: SortEnumType
+  eye_Point_Position_Y: SortEnumType
+  i_Die_O: SortEnumType
+  j_Die_O: SortEnumType
+  wafer_Size: SortEnumType
+  wafer_Orientation: SortEnumType
+  die_Size_X: SortEnumType
+  die_Size_Y: SortEnumType
+  chip_Die_X: SortEnumType
+  chip_Die_Y: SortEnumType
+  wafer_Type: SortEnumType
+  shape: SortEnumType
+  bricked: SortEnumType
+  x_WM_Offset_Vector: SortEnumType
+  y_WM_Offset_Vector: SortEnumType
+  wafer_Map_Real_Size_X: SortEnumType
+  wafer_Map_Real_Size_Y: SortEnumType
+  start_Pos_Wafer_X: SortEnumType
+  start_Pos_Wafer_Y: SortEnumType
+  r1_Origin_Point: SortEnumType
+  ep_TO_LLC_X: SortEnumType
+  ep_TO_LLC_Y: SortEnumType
+  original_Recipe_Run_Id: SortEnumType
+  wafer_Load_Angle: SortEnumType
+}
+
+input TestRecipeRunFilterInput {
+  and: [TestRecipeRunFilterInput!]
+  or: [TestRecipeRunFilterInput!]
+  test_Recipe_Run_Id: UuidOperationFilterInput
+  recipe_Run_Id: UuidOperationFilterInput
+  test_Number: DecimalOperationFilterInput
+  test_Type: DecimalOperationFilterInput
+  persents_Sites_To_Fail: DecimalOperationFilterInput
+  tis_Method: DecimalOperationFilterInput
+  is_Arrayed: DecimalOperationFilterInput
+  array_Dimension_X: DecimalOperationFilterInput
+  array_Dimension_Y: DecimalOperationFilterInput
+  array_Delta_X: FloatOperationFilterInput
+  array_Delta_Y: FloatOperationFilterInput
+  location_X: FloatOperationFilterInput
+  location_Y: FloatOperationFilterInput
+  site_Offset_Xy_X: FloatOperationFilterInput
+  site_Offset_Xy_Y: FloatOperationFilterInput
+  kla_Ref_Sell_X: DecimalOperationFilterInput
+  kla_Ref_Sell_Y: DecimalOperationFilterInput
+  user_Ref_Sell_X: DecimalOperationFilterInput
+  user_Ref_Sell_Y: DecimalOperationFilterInput
+  is_Enable: DecimalOperationFilterInput
+  array_Test_List: ListByteOperationFilterInput
+  test_Label: StringOperationFilterInput
+  r3_Origin_Point: DecimalOperationFilterInput
+  is_Trained: DecimalOperationFilterInput
+  recipeRun: RecipeRunFilterInput
+}
+
+input TestRecipeRunSortInput {
+  test_Recipe_Run_Id: SortEnumType
+  recipe_Run_Id: SortEnumType
+  test_Number: SortEnumType
+  test_Type: SortEnumType
+  persents_Sites_To_Fail: SortEnumType
+  tis_Method: SortEnumType
+  is_Arrayed: SortEnumType
+  array_Dimension_X: SortEnumType
+  array_Dimension_Y: SortEnumType
+  array_Delta_X: SortEnumType
+  array_Delta_Y: SortEnumType
+  location_X: SortEnumType
+  location_Y: SortEnumType
+  site_Offset_Xy_X: SortEnumType
+  site_Offset_Xy_Y: SortEnumType
+  kla_Ref_Sell_X: SortEnumType
+  kla_Ref_Sell_Y: SortEnumType
+  user_Ref_Sell_X: SortEnumType
+  user_Ref_Sell_Y: SortEnumType
+  is_Enable: SortEnumType
+  test_Label: SortEnumType
+  r3_Origin_Point: SortEnumType
+  is_Trained: SortEnumType
+  recipeRun: RecipeRunSortInput
+}
+
+input MeasurementFilterInput {
+  and: [MeasurementFilterInput!]
+  or: [MeasurementFilterInput!]
+  measurement_Id: UuidOperationFilterInput
+  measurement_Type: FloatOperationFilterInput
+  run_Id: UuidOperationFilterInput
+  wafer_Ordinal_Num: FloatOperationFilterInput
+  wafer_Id: StringOperationFilterInput
+  slot_Num: FloatOperationFilterInput
+  test_Num: FloatOperationFilterInput
+  x_Die: FloatOperationFilterInput
+  y_Die: FloatOperationFilterInput
+  x_Element: FloatOperationFilterInput
+  y_Element: FloatOperationFilterInput
+  x_Location: FloatOperationFilterInput
+  y_Location: FloatOperationFilterInput
+  static_Iteration: FloatOperationFilterInput
+  orientation: FloatOperationFilterInput
+  slice: FloatOperationFilterInput
+  status: FloatOperationFilterInput
+  fail_Reason: FloatOperationFilterInput
+  site_Serial_Num: FloatOperationFilterInput
+  image_Path1: StringOperationFilterInput
+  image_Path2: StringOperationFilterInput
+  image_Path3: StringOperationFilterInput
+  test_Label: StringOperationFilterInput
+  wafer_X: FloatOperationFilterInput
+  wafer_Y: FloatOperationFilterInput
+  is_Unpatterned: DecimalOperationFilterInput
+  is_Vertical_Target: DecimalOperationFilterInput
+  run_Start_Time: FloatOperationFilterInput
+  archive_Path: StringOperationFilterInput
+  is_Compressed: ByteOperationFilterInput
+  scheme_Libraries: DecimalOperationFilterInput
+  lotRun: LotRunFilterInput
+  arolMeasurement: AROLMeasurementFilterInput
+  arolAccuracy: AROLAccuracyFilterInput
+}
+
+input AROLMeasurementFilterInput {
+  and: [AROLMeasurementFilterInput!]
+  or: [AROLMeasurementFilterInput!]
+  measurement_Id: UuidOperationFilterInput
+  x_Misreg: FloatOperationFilterInput
+  y_Misreg: FloatOperationFilterInput
+  x_Tis: FloatOperationFilterInput
+  y_Tis: FloatOperationFilterInput
+  couple_Id: DecimalOperationFilterInput
+  run_Start_Time: FloatOperationFilterInput
+  measured_Tis: ByteOperationFilterInput
+  x_Wis: FloatOperationFilterInput
+  y_Wis: FloatOperationFilterInput
+  measurement: MeasurementFilterInput
+}
+
+input AROLMeasurementSortInput {
+  measurement_Id: SortEnumType
+  x_Misreg: SortEnumType
+  y_Misreg: SortEnumType
+  x_Tis: SortEnumType
+  y_Tis: SortEnumType
+  couple_Id: SortEnumType
+  run_Start_Time: SortEnumType
+  measured_Tis: SortEnumType
+  x_Wis: SortEnumType
+  y_Wis: SortEnumType
+  measurement: MeasurementSortInput
+}
+
+input AROLAccuracyFilterInput {
+  and: [AROLAccuracyFilterInput!]
+  or: [AROLAccuracyFilterInput!]
+  measurement_Id: UuidOperationFilterInput
+  x_Pasym_Ovl: FloatOperationFilterInput
+  x_Pasym_Ovl_3S: FloatOperationFilterInput
+  x_Pasym_D1: FloatOperationFilterInput
+  x_Pasym_D1_3S: FloatOperationFilterInput
+  x_Pasym_D2: FloatOperationFilterInput
+  x_Pasym_D2_3S: FloatOperationFilterInput
+  x_Pplin_Dovl: FloatOperationFilterInput
+  x_Pplin_Chirsq: FloatOperationFilterInput
+  x_Pplin_A_Slope: FloatOperationFilterInput
+  x_Pplin_A_Drsqr: FloatOperationFilterInput
+  x_Pupil_3S: FloatOperationFilterInput
+  y_Pasym_Ovl: FloatOperationFilterInput
+  y_Pasym_Ovl_3S: FloatOperationFilterInput
+  y_Pasym_D1: FloatOperationFilterInput
+  y_Pasym_D1_3S: FloatOperationFilterInput
+  y_Pasym_D2: FloatOperationFilterInput
+  y_Pasym_D2_3S: FloatOperationFilterInput
+  y_Pplin_Dovl: FloatOperationFilterInput
+  y_Pplin_Chirsq: FloatOperationFilterInput
+  y_Pplin_A_Slope: FloatOperationFilterInput
+  y_Pplin_A_Drsqr: FloatOperationFilterInput
+  y_Pupil_3S: FloatOperationFilterInput
+  x_Ovl_Sensitivity: FloatOperationFilterInput
+  x_Valid_Pixels: FloatOperationFilterInput
+  y_Ovl_Sensitivity: FloatOperationFilterInput
+  y_Valid_Pixels: FloatOperationFilterInput
+  run_Start_Time: FloatOperationFilterInput
+  x_Reflectivity: FloatOperationFilterInput
+  y_Reflectivity: FloatOperationFilterInput
+  x_Intensity: FloatOperationFilterInput
+  y_Intensity: FloatOperationFilterInput
+  x_Pupil_R: FloatOperationFilterInput
+  y_Pupil_R: FloatOperationFilterInput
+  x_MEB: FloatOperationFilterInput
+  y_MEB: FloatOperationFilterInput
+  x_PCI: FloatOperationFilterInput
+  y_PCI: FloatOperationFilterInput
+  x_Sep_Intensity_1: FloatOperationFilterInput
+  y_Sep_Intensity_1: FloatOperationFilterInput
+  x_Sep_Intensity_2: FloatOperationFilterInput
+  y_Sep_Intensity_2: FloatOperationFilterInput
+  x_Sep_Intensity_3: FloatOperationFilterInput
+  y_Sep_Intensity_3: FloatOperationFilterInput
+  x_Sep_Intensity_4: FloatOperationFilterInput
+  y_Sep_Intensity_4: FloatOperationFilterInput
+  acq_Correction_H: FloatOperationFilterInput
+  acq_Correction_V: FloatOperationFilterInput
+  x_Max_Signal: FloatOperationFilterInput
+  y_Max_Signal: FloatOperationFilterInput
+  x_PCA_Ratio: FloatOperationFilterInput
+  y_PCA_Ratio: FloatOperationFilterInput
+  x_SE_Max_WL: FloatOperationFilterInput
+  y_SE_Max_WL: FloatOperationFilterInput
+  x_SE_Mean_WL: FloatOperationFilterInput
+  y_SE_Mean_WL: FloatOperationFilterInput
+  x_Delta_A_Mean: FloatOperationFilterInput
+  y_Delta_A_Mean: FloatOperationFilterInput
+  x_Delta_A_3SIG: FloatOperationFilterInput
+  y_Delta_A_3SIG: FloatOperationFilterInput
+  x_SE_Mean_Max_WL_Ratio: FloatOperationFilterInput
+  y_SE_Mean_Max_WL_Ratio: FloatOperationFilterInput
+  x_Pad_To_Pad_Ratio: FloatOperationFilterInput
+  y_Pad_To_Pad_Ratio: FloatOperationFilterInput
+  mma_Found_Location_Diff_H: FloatOperationFilterInput
+  mma_Found_Location_Diff_V: FloatOperationFilterInput
+  x_PV_Predictor: FloatOperationFilterInput
+  x_TIS_Predictor: FloatOperationFilterInput
+  y_PV_Predictor: FloatOperationFilterInput
+  y_TIS_Predictor: FloatOperationFilterInput
+  acq_Score: FloatOperationFilterInput
+  acq_Method: FloatOperationFilterInput
+  acq_Mode: FloatOperationFilterInput
+  x_BPW: FloatOperationFilterInput
+  y_BPW: FloatOperationFilterInput
+  x_SPW: FloatOperationFilterInput
+  y_SPW: FloatOperationFilterInput
+  measurement: MeasurementFilterInput
+}
+
+input AROLAccuracySortInput {
+  measurement_Id: SortEnumType
+  x_Pasym_Ovl: SortEnumType
+  x_Pasym_Ovl_3S: SortEnumType
+  x_Pasym_D1: SortEnumType
+  x_Pasym_D1_3S: SortEnumType
+  x_Pasym_D2: SortEnumType
+  x_Pasym_D2_3S: SortEnumType
+  x_Pplin_Dovl: SortEnumType
+  x_Pplin_Chirsq: SortEnumType
+  x_Pplin_A_Slope: SortEnumType
+  x_Pplin_A_Drsqr: SortEnumType
+  x_Pupil_3S: SortEnumType
+  y_Pasym_Ovl: SortEnumType
+  y_Pasym_Ovl_3S: SortEnumType
+  y_Pasym_D1: SortEnumType
+  y_Pasym_D1_3S: SortEnumType
+  y_Pasym_D2: SortEnumType
+  y_Pasym_D2_3S: SortEnumType
+  y_Pplin_Dovl: SortEnumType
+  y_Pplin_Chirsq: SortEnumType
+  y_Pplin_A_Slope: SortEnumType
+  y_Pplin_A_Drsqr: SortEnumType
+  y_Pupil_3S: SortEnumType
+  x_Ovl_Sensitivity: SortEnumType
+  x_Valid_Pixels: SortEnumType
+  y_Ovl_Sensitivity: SortEnumType
+  y_Valid_Pixels: SortEnumType
+  run_Start_Time: SortEnumType
+  x_Reflectivity: SortEnumType
+  y_Reflectivity: SortEnumType
+  x_Intensity: SortEnumType
+  y_Intensity: SortEnumType
+  x_Pupil_R: SortEnumType
+  y_Pupil_R: SortEnumType
+  x_MEB: SortEnumType
+  y_MEB: SortEnumType
+  x_PCI: SortEnumType
+  y_PCI: SortEnumType
+  x_Sep_Intensity_1: SortEnumType
+  y_Sep_Intensity_1: SortEnumType
+  x_Sep_Intensity_2: SortEnumType
+  y_Sep_Intensity_2: SortEnumType
+  x_Sep_Intensity_3: SortEnumType
+  y_Sep_Intensity_3: SortEnumType
+  x_Sep_Intensity_4: SortEnumType
+  y_Sep_Intensity_4: SortEnumType
+  acq_Correction_H: SortEnumType
+  acq_Correction_V: SortEnumType
+  x_Max_Signal: SortEnumType
+  y_Max_Signal: SortEnumType
+  x_PCA_Ratio: SortEnumType
+  y_PCA_Ratio: SortEnumType
+  x_SE_Max_WL: SortEnumType
+  y_SE_Max_WL: SortEnumType
+  x_SE_Mean_WL: SortEnumType
+  y_SE_Mean_WL: SortEnumType
+  x_Delta_A_Mean: SortEnumType
+  y_Delta_A_Mean: SortEnumType
+  x_Delta_A_3SIG: SortEnumType
+  y_Delta_A_3SIG: SortEnumType
+  x_SE_Mean_Max_WL_Ratio: SortEnumType
+  y_SE_Mean_Max_WL_Ratio: SortEnumType
+  x_Pad_To_Pad_Ratio: SortEnumType
+  y_Pad_To_Pad_Ratio: SortEnumType
+  mma_Found_Location_Diff_H: SortEnumType
+  mma_Found_Location_Diff_V: SortEnumType
+  x_PV_Predictor: SortEnumType
+  x_TIS_Predictor: SortEnumType
+  y_PV_Predictor: SortEnumType
+  y_TIS_Predictor: SortEnumType
+  acq_Score: SortEnumType
+  acq_Method: SortEnumType
+  acq_Mode: SortEnumType
+  x_BPW: SortEnumType
+  y_BPW: SortEnumType
+  x_SPW: SortEnumType
+  y_SPW: SortEnumType
+  measurement: MeasurementSortInput
+}
+
+input UuidOperationFilterInput {
+  eq: UUID
+  neq: UUID
+  in: [UUID]
+  nin: [UUID]
+  gt: UUID
+  ngt: UUID
+  gte: UUID
+  ngte: UUID
+  lt: UUID
+  nlt: UUID
+  lte: UUID
+  nlte: UUID
+}
+
+input StringOperationFilterInput {
+  and: [StringOperationFilterInput!]
+  or: [StringOperationFilterInput!]
+  eq: String
+  neq: String
+  contains: String
+  ncontains: String
+  in: [String]
+  nin: [String]
+  startsWith: String
+  nstartsWith: String
+  endsWith: String
+  nendsWith: String
+}
+
+input FloatOperationFilterInput {
+  eq: Float
+  neq: Float
+  in: [Float]
+  nin: [Float]
+  gt: Float
+  ngt: Float
+  gte: Float
+  ngte: Float
+  lt: Float
+  nlt: Float
+  lte: Float
+  nlte: Float
+}
+
+input DecimalOperationFilterInput {
+  eq: Decimal
+  neq: Decimal
+  in: [Decimal]
+  nin: [Decimal]
+  gt: Decimal
+  ngt: Decimal
+  gte: Decimal
+  ngte: Decimal
+  lt: Decimal
+  nlt: Decimal
+  lte: Decimal
+  nlte: Decimal
+}
+
+input ByteOperationFilterInput {
+  eq: Byte
+  neq: Byte
+  in: [Byte]
+  nin: [Byte]
+  gt: Byte
+  ngt: Byte
+  gte: Byte
+  ngte: Byte
+  lt: Byte
+  nlt: Byte
+  lte: Byte
+  nlte: Byte
+}
+
+input LongOperationFilterInput {
+  eq: Long
+  neq: Long
+  in: [Long]
+  nin: [Long]
+  gt: Long
+  ngt: Long
+  gte: Long
+  ngte: Long
+  lt: Long
+  nlt: Long
+  lte: Long
+  nlte: Long
+}
+
+input ListFilterInputTypeOfWaferRunFilterInput {
+  all: WaferRunFilterInput
+  none: WaferRunFilterInput
+  some: WaferRunFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfMeasurementFilterInput {
+  all: MeasurementFilterInput
+  none: MeasurementFilterInput
+  some: MeasurementFilterInput
+  any: Boolean
+}
+
+enum SortEnumType {
+  ASC
+  DESC
+}
+
+input ListByteOperationFilterInput {
+  all: ByteOperationFilterInput
+  none: ByteOperationFilterInput
+  some: ByteOperationFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfLotRunFilterInput {
+  all: LotRunFilterInput
+  none: LotRunFilterInput
+  some: LotRunFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfTestRecipeRunFilterInput {
+  all: TestRecipeRunFilterInput
+  none: TestRecipeRunFilterInput
+  some: TestRecipeRunFilterInput
+  any: Boolean
+}
+
+input MeasurementSortInput {
+  measurement_Id: SortEnumType
+  measurement_Type: SortEnumType
+  run_Id: SortEnumType
+  wafer_Ordinal_Num: SortEnumType
+  wafer_Id: SortEnumType
+  slot_Num: SortEnumType
+  test_Num: SortEnumType
+  x_Die: SortEnumType
+  y_Die: SortEnumType
+  x_Element: SortEnumType
+  y_Element: SortEnumType
+  x_Location: SortEnumType
+  y_Location: SortEnumType
+  static_Iteration: SortEnumType
+  orientation: SortEnumType
+  slice: SortEnumType
+  status: SortEnumType
+  fail_Reason: SortEnumType
+  site_Serial_Num: SortEnumType
+  image_Path1: SortEnumType
+  image_Path2: SortEnumType
+  image_Path3: SortEnumType
+  test_Label: SortEnumType
+  wafer_X: SortEnumType
+  wafer_Y: SortEnumType
+  is_Unpatterned: SortEnumType
+  is_Vertical_Target: SortEnumType
+  run_Start_Time: SortEnumType
+  archive_Path: SortEnumType
+  is_Compressed: SortEnumType
+  scheme_Libraries: SortEnumType
+  lotRun: LotRunSortInput
+  arolMeasurement: AROLMeasurementSortInput
+  arolAccuracy: AROLAccuracySortInput
+}

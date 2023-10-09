@@ -1,0 +1,35 @@
+﻿{
+    "data": {
+        "lotRunById": {
+            "run_Id": "6e5c37ef-c400-11ed-85e8-005056b2bec0",
+            "tool_Id": "1357",
+            "failed_Wafers": 1,
+            "failed_Sites": 0,
+            "comments": " ",
+            "stepper_Id_2": "Default Stepper",
+            "recipe_Run_Id": "bdbaf480-c268-11ed-85e8-005056b2bec0",
+            "slot_Map": 4,
+            "iteration": 10,
+            "calibration_Mode": 0,
+            "port_Num": 0,
+            "lot_Name": "CTDO_F120_PolyAA_Q784PS",
+            "arp_Flag": 0,
+            "tis_Mode": 3,
+            "access_Method": 1,
+            "lied_File_Flag": 0,
+            "control_Job_Id": "N/A",
+            "process_Job_Id": "N/A",
+            "carrier_Id": "N/A",
+            "analysis_Recipe_Name": "",
+            "handling_Mode": 1,
+            "ds_Iteration_Number": 0,
+            "recipe_Name": "Conformance\\CTDO\\CTDO_F120_PolyAA_Q784PS",
+            "calc_Qmerit": 0,
+            "modeled_TIS_Run_Enabled": 0,
+            "imaging_Accuracy_Metrics": 0,
+            "lot_Status": 1,
+            "run_Start_Time": 1678981366,
+            "run_End_Time": 1678981372
+        }
+    }
+}

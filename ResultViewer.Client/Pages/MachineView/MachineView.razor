@@ -1,0 +1,21 @@
+﻿@page "/machineconnection"
+
+<div class="rv-flex-v-stack rv-flex-center">
+    <div class="current-machine rv-flex-v-stack">
+        <h2>@MachineItem.Name</h2>
+        <p>Status: <span class="status-online">@MachineItem.Status</span></p>
+        <p>IP Address: @MachineItem.IpAddress</p>
+    </div>
+    <div class="offline-machines content-container rv-flex-v-stack rv-flex-center">
+        <h3>Offline Machines</h3>
+        <div class="table-container">
+            <QuickGrid Items="MachineItems.AsQueryable()" Pagination="@Pagination" ResizableColumns="true" Class="table" Theme="a">
+                <PropertyColumn Property="@(i => i.Name)" Sortable="true" Align="Align.Center" Title="Name" />
+                <PropertyColumn Property="@(i => i.IpAddress)" Sortable="true" Align="Align.Center" Title="IP Address" />
+                <PropertyColumn Property="@(i => i.Status)" Sortable="true" Align="Align.Center" Title="Status" />
+                <TemplateColumn><button class="connect-button">Connect</button></TemplateColumn>
+            </QuickGrid>   
+        </div>
+        <Paginator Value="@Pagination" />
+    </div>
+</div>

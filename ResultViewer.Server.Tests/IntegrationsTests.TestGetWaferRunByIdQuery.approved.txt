@@ -1,0 +1,21 @@
+﻿{
+    "data": {
+        "waferRunById": {
+            "run_Id": "bc9989a2-ff72-4daa-822b-88505d25ec18",
+            "wafer_Run_Id": "1f8115e1-d20e-11eb-85b9-005056b27306",
+            "wafer_Ordinal_Num": 1,
+            "wafer_Start_Time": 1624224290,
+            "wafer_End_Time": 1624224367,
+            "conditional_Site_Mode": 0,
+            "images_Meta_Data_Path": "",
+            "lotRun": {
+                "run_Id": "bc9989a2-ff72-4daa-822b-88505d25ec18",
+                "lot_Name": "sanity_21-06-2021_00-23-42",
+                "recipe_Name": "Temp\\sanity_21-06-2021_00-23-42",
+                "lot_Status": 0,
+                "run_Start_Time": 1624235089,
+                "run_End_Time": 1624235167
+            }
+        }
+    }
+}

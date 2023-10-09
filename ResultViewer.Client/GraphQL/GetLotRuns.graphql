@@ -1,0 +1,20 @@
+﻿query GetLotRuns($order: [LotRunSortInput!] ) {
+  allLotRuns (order: $order )
+  {
+      run_Id,
+      recipe_Name,
+      lot_Name,
+      tool_Id,
+      operator_Name,
+      stepper_Id,
+      comments,
+      tis_Mode,
+      calibration_Mode,
+      run_Start_Time,
+      run_End_Time,
+      iteration,
+      recipe_Run_Id,
+      lot_Status,
+      measurements { fail_Reason }
+  }
+}

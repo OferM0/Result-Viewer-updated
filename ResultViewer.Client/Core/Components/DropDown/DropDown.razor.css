@@ -1,0 +1,17 @@
+﻿.filter-dropdown {
+    margin-top: 10px;
+}
+
+.dropdown-toggle {
+    color: black;
+    border-color: grey;
+    border-radius: 4px;
+    width: 150px;
+    font-size: 15px;
+    padding: 5px;
+}
+
+.dropdown-item {
+    color: black;
+    font-size: 15px;
+}

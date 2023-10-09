@@ -1,0 +1,11 @@
+﻿<div class="filter-dropdown rv-flex-h-stack rv-flex-start">
+    <select class="dropdown-toggle" @onchange="HandleChangeEvent">
+        @if (Options != null)
+        {
+            foreach (var option in Options)
+            {
+                <option class="dropdown-item" value="@option">@option</option>
+            }
+        }
+    </select>
+</div>

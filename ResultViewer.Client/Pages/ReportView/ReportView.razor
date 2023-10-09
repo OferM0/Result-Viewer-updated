@@ -1,0 +1,64 @@
+﻿@page "/"
+@using ResultViewer.Client.Core.Components.Loading
+@using ResultViewer.Client.Core.Constants;
+@inject NavigationManager NavManager
+
+<Breadcrumb Breadcrumbs="Breadcrumbs"></Breadcrumb>
+
+<div class="rv-flex-v-stack rv-flex-justify-space-evenly rv-flex-center">
+
+    @if (DataItems.Count() == 0)
+    {
+        <Loading />
+    }
+    else
+    {
+        <div class="content-container rv-flex-v-stack rv-flex-center">
+            <div class="table-container">
+                <QuickGrid Items="DataItems.AsQueryable()" Pagination="@Pagination" Class="table" ResizableColumns="true" Theme="a">
+                    <TemplateColumn Align="Align.Center" Title="Lot Name" Sortable="true" SortBy="@SortByName" Class="big-th">
+                        <div class="item-text align-left" data-hover=@context.LotName>
+                            <img src="@Icons.File" class="file-icon" alt="File" /> @context.LotName
+                        </div>
+                    </TemplateColumn>
+                    <TemplateColumn Align="Align.Center" Title="Recipe Name" Sortable="true" SortBy="@SortByRecipeName" Class="recipename-th">
+                        <div class="item-text align-left" data-hover=@context.RecipeName>
+                            @context.RecipeName
+                        </div>
+                    </TemplateColumn>
+                    <PropertyColumn Property="@(i => i.StartRunDate)" Sortable="true" Align="Align.Center" Title="Start" Class="date-th" />
+                    <PropertyColumn Property="@(i => i.EndRunDate)" Sortable="true" Align="Align.Center" Title="End" Class="date-th" />
+                    <TemplateColumn Sortable="true" Align="Align.Center" Title="Run Time[Min]" SortBy="@SortByRunTime" Class="runtime-th">
+                        <div class="item-text" data-hover=@context.RunTime>
+                            @Double.Parse(context.RunTime).ToString(Constants.LotItemComponent.ToAfterDotDoubleFormat)
+                        </div>
+                    </TemplateColumn>
+                    <TemplateColumn Align="Align.Center" Title="Status" Sortable="true" SortBy="@SortByStatus" Class="small-th">
+                        <div>
+                            <img src="@GetStatusIcon(context.LotStatus)" alt="@context.LotStatus" class="status-icon" />
+                            @context.LotStatus
+                        </div>
+                    </TemplateColumn>
+                    <PropertyColumn Property="@(i => i.Reason)" Sortable="true" Align="Align.Center" Title="Reason" Class="small-th" />
+                    <TemplateColumn Align="Align.Center" Class="button-th">
+                        <div class="dropdown">
+                            <i class="oi oi-ellipses buttonBar" type="button" @onclick="()=>ToggleDropdown(context.Run_Id.ToString())"></i>
+                            @if (openRowId == context.Run_Id.ToString())
+                            {
+                                <div class="dropdown-menu show check" @onclick:stopPropagation @onmouseleave="CloseDropdown">
+                                    <button class="dropdown-item" @onclick="()=> OnLotItemDoubleClick(context.Run_Id)">Details</button>
+                                    <button class="dropdown-item" @onclick="()=> OnExportClick(context.Run_Id)">Export</button>
+                                </div>
+                            }
+                        </div>
+                    </TemplateColumn>
+                </QuickGrid>
+            </div>
+            <Paginator Value="@Pagination"/>
+        </div>
+        <div class="rv-flex-h-stack rv-flex-justify-space-evenly rv-flex-center responsive-charts">
+            <div><PieChart Title="Success Rate" Lables="@Constants.ChartsComponent.PieChartComponent.Lables" Values="Values" /></div>
+            <div><PieChart Title="Failure Summary" Lables="FailureLables" Values="FailureValues" /></div>
+        </div>
+    }
+</div>

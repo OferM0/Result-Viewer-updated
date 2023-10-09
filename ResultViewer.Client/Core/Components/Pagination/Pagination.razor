@@ -1,0 +1,7 @@
+﻿<div class="pagination">
+    <button disabled="@IsFirstPage" @onclick="GoToPreviousPage">@Constants.PaginationComponent.Prev</button>
+    <span>@Constants.PaginationComponent.FirstSpan</span>
+    <input type="number" min="1" max="@TotalPages" value="@CurrentPage" @onchange="GoToPage" />
+    <span>@Constants.PaginationComponent.SecondSpan @TotalPages</span>
+    <button disabled="@IsLastPage" @onclick="GoToNextPage">@Constants.PaginationComponent.Next</button>
+</div>

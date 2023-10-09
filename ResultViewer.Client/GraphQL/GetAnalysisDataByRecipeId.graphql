@@ -1,0 +1,28 @@
+﻿query GetAnalysisDataByRecipeId ($id: UUID!){
+  recipeRunById(id: $id)
+  {
+    recipe_Run_Id
+    recipe_Name
+    lotRuns {
+      run_Id
+      recipe_Name
+      lot_Name
+      run_Start_Time
+      run_End_Time
+      measurements {
+        measurement_Id
+        test_Num
+        x_Die
+        y_Die
+        arolMeasurement {
+          measurement_Id
+          x_Tis
+          y_Tis
+          x_Misreg
+          y_Misreg
+          run_Start_Time
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,150 @@
+﻿.content-container {
+    width: 90%;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.table-container {
+    box-sizing: border-box;
+    height: 77vh;
+    width: 100%;
+    background: #FFFFFF;
+    border: 2px solid #DADADA;
+    box-shadow: 4px 5px 10px rgba(0, 0, 0, 0.25);
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-radius: 10px 10px 0px 0px;
+}
+
+::deep .table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    margin-bottom: 0px;
+}
+
+::deep thead {
+    height: 40px;
+    background: rgba(165, 167, 168, 0.2);
+}
+
+::deep td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+::deep tr {
+    box-sizing: border-box;
+    /*height: 40px;*/
+    height: 5.1vh;
+    border-bottom: 1px solid #DADADA;
+    font-family: 'Inter';
+    font-size: 13px;
+    color: #333333;
+    text-align: center;
+    z-index: 100;
+    vertical-align: middle;
+}
+
+::deep tr:hover {
+    background-color: #D9E4FF;
+}
+
+::deep .quickgrid[theme=a] {
+    font-family: 'Inter';
+}
+
+::deep .quickgrid[theme=a] .col-title {
+    font-weight: 700;
+    font-size: 14px;
+    color: #3D638C;
+}
+
+::deep .quickgrid[theme=a] th {
+    position: sticky;
+    border: none;
+    overflow-x: hidden;
+    overscroll-behavior-x: none;
+}
+
+.status-icon {
+    height: 10px;
+    width: 10px;
+    margin-right: 5px;
+    margin-left: -20px;
+}
+
+.file-icon {
+    width: 25px;
+    height: 23px;
+}
+
+.item-text {
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.item-text:before {
+    content: attr(data-hover);
+    visibility: hidden;
+    opacity: 0;
+    background-color: black;
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    transition: opacity 0.5s ease-in-out;
+    position: absolute;
+    z-index: 100;
+    margin-top: 20px;
+    padding: 5px;
+}
+
+.item-text:hover:before {
+    opacity: 1;
+    visibility: visible;
+}
+
+.buttonBar {
+    cursor: pointer;
+}
+
+.check {
+    position: fixed;
+    z-index: 101;
+}
+
+.date-range-picker {
+    padding-left: 50px;
+}
+
+.date-picker-template {
+    background: #fff;
+    cursor: pointer;
+    padding: 5px 10px;
+    width: 250px;
+    border: 1px solid #ccc;
+}
+
+::deep th.recipename-th {
+    width: 50%;
+}
+
+::deep th.meduim-th {
+    width: 15%;
+}
+
+::deep th.small-th {
+    width: 10%;
+}
+
+::deep th.recipename-smalltable-th {
+    width: 45%;
+}
+
+::deep th.small-smalltable-th {
+    width: 10%;
+}

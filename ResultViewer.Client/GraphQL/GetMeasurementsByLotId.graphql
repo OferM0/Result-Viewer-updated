@@ -1,0 +1,38 @@
+﻿query GetMeasurementsByLotId ($id: UUID!){
+    allMeasurements(where: { run_Id: { eq: $id } }) {
+      measurement_Id,
+      run_Id,
+      test_Num,
+      test_Label,
+      slot_Num,
+      wafer_Ordinal_Num,
+      wafer_Id,
+      wafer_X,
+      wafer_Y,
+      x_Die,
+      y_Die,
+      x_Element,
+      y_Element,
+      x_Location,
+      y_Location,
+      fail_Reason
+      lotRun {
+        lot_Name,
+        operator_Name,
+        run_End_Time,
+        recipe_Name,
+        calibration_Mode,
+        recipeRun {
+          die_Size_X,
+          die_Size_Y
+        }
+      },
+      arolMeasurement {
+        measurement_Id,
+        x_Tis,
+        y_Tis,
+        x_Misreg,
+        y_Misreg
+      }
+   }
+}

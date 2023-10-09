@@ -1,0 +1,7 @@
+﻿.floating-button {
+    position: absolute;
+    padding:6px;
+    color: #3D638C;
+    z-index: 100;
+    cursor: pointer;
+}
